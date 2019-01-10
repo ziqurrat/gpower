@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{%block extra_js%}
+<!-- JS libraries inclusion -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js" integrity="sha256-bu/BP02YMudBc96kI7yklc639Mu4iKGUNNcam8D2nLc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/localization/methods_it.min.js" integrity="sha256-GTuWjmBsTdS9Y2jn6ucwOGGYQkpnFPHryPUPg3GrhJY=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-steps/1.1.0/jquery.steps.min.js" integrity="sha256-yUWanhHkxj+3ow0qZE6AtzP8lZkwLvPagULL6PnZMz0=" crossorigin="anonymous"></script>
+<!-- JS custom -->
+{% load staticfiles %}
+<script type="text/javascript" src="{% static 'js/quizWizard.js' %}"></script>
+{% endblock %}
+
+
+{% block content %}
+<!-- il blocco dei css sta dentro header.html che dipende da base. Per arrivarci devi passare dal blocco definito in base. -->
+{% block extra_css %}
+	{% load staticfiles %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/leaf.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/jquery-steps.css' %}" > 
+{% endblock %}
+
+
+
+
+<h1>{{ question.question_text }}</h1>
+<form id="quiz-module" action="#">
+ <input type="hidden" id="pollId" name="pollId" value="{{question.id}}">
+{% csrf_token %}
+	<div>
+	<h3>Step</h3>
+	<fieldset>
+		<h2>{{ question.question_text }}</h2>
+		<ul>
+		{% for choice in question.choice_set.all %}
+			<li><input type="radio" name="opt" value="{{ choice.id }}" {% if forloop.first %}required {%endif%}/>{{ choice.choice_text }}</li>
+		{% endfor %}
+		</ul>
+	</fieldset>
+	</div>
+</form>
+<section id="quiz-results">
+	<h3>Il tuo voto</h3>
+	<p id="ajaxresults"></p>
+	<h3>Tutti i voti</h3>
+	<dl>
+		{%block updated_results %}{% endblock %}
+	</dl>
+</section>
+<aside>
+	<section>
+		<h3>Info Box</h3>
+		<dl>
+			<dt>Category:<dt>
+			<dd>Books</dd>
+			<dt>Tags<dt>
+			<dd>Fantasy, HP, Harry Potter</dd>
+			<dt>Type:<dt>
+			<dd>Knowledge quiz</dd>
+			<dt>Creation date:<dt>
+			<dd>12 dec 2018</dd>
+			<dt>Author:<dt>
+			<dd><a href="">Federica</a></dd> <!-- link to a dynamic page with all quizzes made by author (maybe) -->
+			<dt>Visits<dt>
+			<dd>5</dd>
+		</dl>
+	</section>
+	<section>
+		<h3>Related Contents</h3>
+		<a href="">Harry Potter saga</a>
+	</section>
+</aside>
+{% endblock %}

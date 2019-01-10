@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+
+<article>
+{% if latest_question_list %}
+<div id="listing">
+    {% for question in latest_question_list %}
+		<article>
+			{% load static %}
+			<a href="{% url 'polls:detail' question.id %}"><img src="{% static 'assets/thumb.jpg' %}" alt="thumb"/></a>
+			<h1><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></h1>
+			<footer>
+				<ul>
+					<li>in <a href="">Book</a> - <a href="">Sci-fi</a></li>
+					<li><a href="">Knowledge quiz</a></li>
+					<li>1500 visits</li>
+				</ul>
+			</footer>
+		</article>
+    {% endfor %}
+    </div>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+
+
+{% endblock %}

@@ -1,0 +1,166 @@
+*{
+	margin: 0;
+}
+
+body{
+    background: #eee;
+	font-family: 'Raleway', sans-serif;
+	font-weight:400;
+	font-size:14px;
+}
+
+h1{
+	font-family: 'Londrina Solid', cursive;
+	font-weight:900;
+}
+
+h2, h3, h4, h5, h6 {
+	font-weight:400;
+}
+
+strong {
+	font-family: 'Raleway', sans-serif;
+	font-weight:600;
+}
+
+
+.wrapper{
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+nav{
+	background: #333;
+}
+
+.wrapper > footer{
+	background: #333;
+	color: #fff;
+	padding:10px;
+	margin-top:10px;
+}
+
+ul {
+	list-style-type: none;
+	padding:0;
+}
+
+/*header*/
+
+header{
+	text-align:center;
+	padding:20px 0;
+	background: -moz-linear-gradient(top, rgba(0,0,0,0.65) 14%, rgba(0,0,0,0.33) 57%, rgba(0,0,0,0) 100%);
+	background: -webkit-linear-gradient(top, rgba(0,0,0,0.65) 14%,rgba(0,0,0,0.33) 57%,rgba(0,0,0,0) 100%);
+	background: linear-gradient(to bottom, rgba(0,0,0,0.65) 14%,rgba(0,0,0,0.33) 57%,rgba(0,0,0,0) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=0 );
+}
+
+header h1 {
+	font-family: 'Londrina Solid', cursive;
+	font-size: 80px;
+}
+
+header h2 {
+	font-family: 'Londrina Solid', cursive;
+	font-size: 30px;
+}
+
+/* menu base styles */
+
+nav a {
+	text-decoration:none;
+	text-align: center;
+	color:#FFF;
+	display:block;
+	padding:10px;
+}
+
+nav a:hover {
+	background-color:#555;
+}
+
+/*main - small screen*/
+
+#listing {
+	margin:10px;
+}
+
+#listing article {
+	box-sizing:border-box;
+	border:1px solid #333;
+	border-radius:8px;
+	padding:10px;
+	margin:10px auto;
+	background-color:#FFF;
+	font-size:14px;
+}
+
+#listing article h1 {
+	font-family: 'Londrina Solid', cursive;
+	font-size: 20px;
+	margin: 10px auto;
+}
+
+#listing article img{
+	max-width:180px;
+	height:auto;
+	margin: 5px auto;
+}
+
+#listing article footer ul{
+	display: flex;
+	flex-flow: row wrap;
+	align-items: baseline;
+	justify-content:flex-start;
+}
+
+#listing article footer ul li:first-child{
+	flex: 2 2 auto;
+}
+#listing article footer ul li:last-child{
+	align-self:flex-end;
+}
+
+#listing article footer ul li{
+	flex: 1 1 auto;
+}
+
+#listing article footer ul li a {
+	color:#666;
+	text-decoration:none;
+}
+
+main button {
+	clear:both;
+}
+
+/* flex styles */
+
+@media screen and (min-width:480px){ /*big screen*/
+	ul{
+		display:flex;
+	}
+
+	nav li {
+		flex: 1 1 0;
+	}
+
+	#listing {
+		display:flex;
+		flex-flow: row wrap;
+		justify-content:space-between;
+		align-items: stretch;
+	}
+
+	#listing article {
+		flex: 0 1 22%;
+	}
+
+	#listing article img{
+		height:250px;
+		max-width:initial;
+	}
+
+}

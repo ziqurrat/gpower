@@ -1,0 +1,8 @@
+
+
+
+{%block updated_results %}
+	{% for choice in question.choice_set.all %}
+		<dt>{{ choice.choice_text }}:  </dt><dd id="choiceId-{{ choice.id }}">{{ choice.votes }}</dd>
+	{% endfor %}
+{% endblock %}
